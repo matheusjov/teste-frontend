@@ -1,0 +1,11 @@
+.md-button.md-fab.position--fixed {
+  position: fixed;
+}
+
+.back-color-red {
+  background-color: #ff91af !important;
+}
+
+.back-color-green {
+  background-color: #a8e4a0 !important;
+}

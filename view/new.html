@@ -1,0 +1,35 @@
+<md-content>
+  <md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+      <h2 flex md-truncate>Realizar lançamento</h2>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+
+    <form name="formAdd" ng-submit="formAdd.$valid && save(vm.launch, $event)" novalidate>
+
+      <md-input-container class="md-block">
+        <md-radio-group ng-model="vm.launch.type" name="type" layout="row" ng-required="true">
+          <md-radio-button value="S" class="md-primary">Saque</md-radio-button>
+          <md-radio-button value="D" class="md-primary">Depósito</md-radio-button>
+        </md-radio-group>
+        <div ng-if="formAdd.type.$invalid && formAdd.$submitted">
+          <div class="md-input-message-animation" style="opacity: 1;margin-top: 0px;">Campo obrigatório!</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Valor</label>
+        <input ng-model="vm.launch.value" name="value" ui-money-mask maxlength="14" ng-required="true">
+        <div ng-if="formAdd.value.$invalid && formAdd.$submitted">
+          <div class="md-input-message-animation" style="opacity: 1;margin-top: 0px;">Campo obrigatório!</div>
+        </div>
+      </md-input-container>
+
+      <div layout="row" layout-align="center">
+        <md-button type="submit" class="md-raised md-primary">Adicionar</md-button>
+      </div>
+
+    </form>
+  </md-content>
+</md-content>

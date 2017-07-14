@@ -1,0 +1,48 @@
+<div layout-align="center center" layout="row" ng-init="vm.init()">
+  <div flex="90">
+    <div layout="row" layout-align="space-around">
+      <div flex="50">
+        <h2>Lançamentos</h2>
+
+      </div>
+      <div layout-align="end center" layout="row" flex="100" layout-padding>
+        <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+          <span>Total em conta: <b>{{vm.balance | currency}}</b></span>
+        </md-whiteframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div layout-align="center center" layout="row">
+  <md-card flex="90">
+    <md-card-content>
+      <md-list flex>
+        <md-list-item class="md-2-line" ng-repeat="item in vm.list">
+          <md-icon ng-class="{'back-color-green': item.type === 'D', 'back-color-red': item.type === 'S'}" class="md-avatar-icon" aria-label="icon" md-svg-icon="{{item.type === 'D' ? 'list:dep' : 'list:saq'}}"></md-icon>
+
+          <div class="md-list-item-text" layout="column">
+            <h3>{{item.type == 'D' ? 'Depósito' : 'Saque'}}</h3>
+            <h4><b>{{item.value | currency}}</b></h4>
+          </div>
+
+          <md-button ng-click="vm.delete($event, item)">
+            <md-tooltip md-direction="bottom">Deletar</md-tooltip>
+            <md-icon md-svg-icon="action:delete"></md-icon>
+          </md-button>
+
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </md-list>
+      <h4 ng-if="vm.list.length <= 0">Nenhum registro encontrado</h4>
+    </md-card-content>
+  </md-card>
+</div>
+
+<div class="lock-size speed-dial">
+  <md-button class="md-fab md-fab-bottom-right position--fixed md-primary" aria-label="new" ng-click="vm.modal()">
+    <md-tooltip md-direction="left">Adicionar</md-tooltip>
+    <md-icon md-svg-icon="action:add"></md-icon>
+  </md-button>
+</div>
